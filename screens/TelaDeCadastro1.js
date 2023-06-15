@@ -1,10 +1,16 @@
-import * as React from "react";
-import { StyleSheet, View, Text, Pressable } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, Pressable, Text } from "react-native";
+import { Input as RNKTextInput } from "@ui-kitten/components";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
 import { Color, Padding, FontFamily, FontSize, Border } from "../GlobalStyles";
 
 const TelaDeCadastro1 = () => {
+  const [nomeTextInput, setNomeTextInput] = useState();
+  const [eMailTextInput, setEMailTextInput] = useState();
+  const [frameTextInput, setFrameTextInput] = useState();
+  const [cPFTextInput, setCPFTextInput] = useState();
+  const [senhaTextInput, setSenhaTextInput] = useState();
   const navigation = useNavigation();
 
   return (
@@ -19,12 +25,22 @@ const TelaDeCadastro1 = () => {
           style={[styles.lineNomeCompleto, styles.lineNomeCompletoBorder]}
         />
       </View>
-      <View style={[styles.nome, styles.cpfSpaceBlock]}>
-        <Text style={styles.nomeCompleto}>Nome completo:</Text>
-      </View>
-      <View style={[styles.eMail, styles.cpfSpaceBlock]}>
-        <Text style={styles.nomeCompleto}>E-mail:</Text>
-      </View>
+      <RNKTextInput
+        style={[styles.nome, styles.cpfSpaceBlock]}
+        placeholder="Nome completo:"
+        value={nomeTextInput}
+        onChangeText={setNomeTextInput}
+        placeholderTextColor="#b6b6b6"
+        textStyle={styles.nomeTextInputText}
+      />
+      <RNKTextInput
+        style={[styles.eMail, styles.cpfSpaceBlock]}
+        placeholder="E-mail:"
+        value={eMailTextInput}
+        onChangeText={setEMailTextInput}
+        placeholderTextColor="#b6b6b6"
+        textStyle={styles.eMailTextInputText}
+      />
       <View style={[styles.iconEditAlt, styles.iconSpaceBlock]}>
         <Image
           style={styles.vectorIcon}
@@ -52,12 +68,22 @@ const TelaDeCadastro1 = () => {
           style={[styles.lineNomeCompleto, styles.lineNomeCompletoBorder]}
         />
       </View>
-      <View style={[styles.telefoneWrapper, styles.cpfSpaceBlock]}>
-        <Text style={styles.nomeCompleto}>Telefone:</Text>
-      </View>
-      <View style={[styles.cpf, styles.cpfSpaceBlock]}>
-        <Text style={styles.nomeCompleto}>CPF:</Text>
-      </View>
+      <RNKTextInput
+        style={[styles.telaDeCadastro1Item, styles.cpfSpaceBlock]}
+        placeholder="Telefone:"
+        value={frameTextInput}
+        onChangeText={setFrameTextInput}
+        placeholderTextColor="#b6b6b6"
+        textStyle={styles.frameTextInputText}
+      />
+      <RNKTextInput
+        style={[styles.cpf, styles.cpfSpaceBlock]}
+        placeholder="CPF:"
+        value={cPFTextInput}
+        onChangeText={setCPFTextInput}
+        placeholderTextColor="#b6b6b6"
+        textStyle={styles.cPFTextInputText}
+      />
       <View style={[styles.iconCreditCard, styles.iconSpaceBlock]}>
         <Image
           style={styles.vectorIcon2}
@@ -77,9 +103,14 @@ const TelaDeCadastro1 = () => {
           style={[styles.lineNomeCompleto, styles.lineNomeCompletoBorder]}
         />
       </View>
-      <View style={[styles.senha, styles.cpfSpaceBlock]}>
-        <Text style={styles.nomeCompleto}>Senha:</Text>
-      </View>
+      <RNKTextInput
+        style={[styles.senha, styles.cpfSpaceBlock]}
+        placeholder="Senha:"
+        value={senhaTextInput}
+        onChangeText={setSenhaTextInput}
+        placeholderTextColor="#b6b6b6"
+        textStyle={styles.senhaTextInputText}
+      />
       <Image
         style={styles.iconEyecinza}
         contentFit="cover"
@@ -117,6 +148,21 @@ const TelaDeCadastro1 = () => {
 };
 
 const styles = StyleSheet.create({
+  nomeTextInputText: {
+    color: "#b6b6b6",
+  },
+  eMailTextInputText: {
+    color: "#b6b6b6",
+  },
+  frameTextInputText: {
+    color: "#b6b6b6",
+  },
+  cPFTextInputText: {
+    color: "#b6b6b6",
+  },
+  senhaTextInputText: {
+    color: "#b6b6b6",
+  },
   telaLayout: {
     borderWidth: 1,
     backgroundColor: Color.branco,
@@ -146,9 +192,9 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   pagfiTypo: {
+    textAlign: "left",
     fontFamily: FontFamily.h2,
     fontWeight: "700",
-    textAlign: "left",
   },
   lineNomeCompleto: {
     borderTopWidth: 1,
@@ -162,12 +208,6 @@ const styles = StyleSheet.create({
   line1: {
     top: 384,
     left: 65,
-  },
-  nomeCompleto: {
-    fontSize: FontSize.h7_size,
-    fontFamily: FontFamily.h7,
-    color: Color.cinzaPagFI,
-    textAlign: "left",
   },
   nome: {
     top: 355,
@@ -211,7 +251,7 @@ const styles = StyleSheet.create({
     top: 510,
     left: 66,
   },
-  telefoneWrapper: {
+  telaDeCadastro1Item: {
     top: 481,
     left: 66,
   },

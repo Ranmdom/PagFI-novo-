@@ -1,10 +1,15 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Text, Pressable } from "react-native";
+import { Input as RNKTextInput } from "@ui-kitten/components";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
 import { FontFamily, Color, Border, FontSize, Padding } from "../GlobalStyles";
 
 const Emprestar = () => {
+  const [rectangleTextInput, setRectangleTextInput] = useState();
+  const [rectangleTextInput1, setRectangleTextInput1] = useState();
+  const [rectangleTextInput2, setRectangleTextInput2] = useState();
+  const [rectangleTextInput3, setRectangleTextInput3] = useState();
   const navigation = useNavigation();
 
   return (
@@ -17,10 +22,30 @@ const Emprestar = () => {
         style={[styles.cadastrandoDevedor, styles.emprestar1Typo]}
       >{`Cadastrando
 Devedor`}</Text>
-      <View style={[styles.emprestarItem, styles.emprestarChildLayout]} />
-      <View style={[styles.rectangleView, styles.emprestarChildLayout]} />
-      <View style={[styles.emprestarChild1, styles.emprestarChildLayout]} />
-      <View style={[styles.emprestarChild2, styles.emprestarChildLayout]} />
+      <RNKTextInput
+        style={[styles.emprestarItem, styles.emprestarChildLayout]}
+        placeholder="Place your text"
+        value={rectangleTextInput}
+        onChangeText={setRectangleTextInput}
+      />
+      <RNKTextInput
+        style={[styles.rectangleRnktextinput, styles.emprestarChildLayout]}
+        placeholder="Place your text"
+        value={rectangleTextInput1}
+        onChangeText={setRectangleTextInput1}
+      />
+      <RNKTextInput
+        style={[styles.emprestarChild1, styles.emprestarChildLayout]}
+        placeholder="Place your text"
+        value={rectangleTextInput2}
+        onChangeText={setRectangleTextInput2}
+      />
+      <RNKTextInput
+        style={[styles.emprestarChild2, styles.emprestarChildLayout]}
+        placeholder="Place your text"
+        value={rectangleTextInput3}
+        onChangeText={setRectangleTextInput3}
+      />
       <Text style={styles.useradmin}>@user.admin</Text>
       <Text style={[styles.nomeCompleto, styles.cpfTypo]}>Nome completo:</Text>
       <Text style={[styles.telefone, styles.cpfTypo]}>Telefone:</Text>
@@ -127,7 +152,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   emprestarChildLayout: {
-    height: 78,
     width: 331,
     backgroundColor: Color.whitesmoke,
     borderRadius: Border.br_9xs,
@@ -234,7 +258,7 @@ const styles = StyleSheet.create({
   emprestarItem: {
     top: 127,
   },
-  rectangleView: {
+  rectangleRnktextinput: {
     top: 219,
   },
   emprestarChild1: {

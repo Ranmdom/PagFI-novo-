@@ -1,23 +1,37 @@
-import * as React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import React, { useState } from "react";
+import { Pressable, Text, StyleSheet, View } from "react-native";
+import { Input as RNKTextInput } from "@ui-kitten/components";
 import { Image } from "expo-image";
 import { Color, Padding, Border, FontFamily, FontSize } from "../GlobalStyles";
 
 const TelaDeLogin = () => {
+  const [frameTextInput, setFrameTextInput] = useState();
+  const [senhaTextInput, setSenhaTextInput] = useState();
+
   return (
     <View style={[styles.telaDeLogin, styles.telaLayout]}>
-      <View style={[styles.bottonEntrar, styles.bottonSpaceBlock]}>
+      <Pressable style={[styles.bottonEntrar, styles.bottonSpaceBlock]}>
         <Text style={[styles.entrar, styles.pagfiTypo]}>Entrar</Text>
-      </View>
-      <View style={[styles.bottonCadastreSe, styles.bottonSpaceBlock]}>
+      </Pressable>
+      <Pressable style={[styles.bottonCadastreSe, styles.bottonSpaceBlock]}>
         <Text style={[styles.entrar, styles.pagfiTypo]}>Cadastre-se</Text>
-      </View>
-      <View style={[styles.nomeOuTelefoneWrapper, styles.senhaSpaceBlock]}>
-        <Text style={styles.nomeOuTelefone}>Nome ou telefone:</Text>
-      </View>
-      <View style={[styles.senha, styles.senhaSpaceBlock]}>
-        <Text style={styles.nomeOuTelefone}>Senha:</Text>
-      </View>
+      </Pressable>
+      <RNKTextInput
+        style={[styles.telaDeLoginChild, styles.senhaSpaceBlock]}
+        placeholder="Nome ou telefone:"
+        value={frameTextInput}
+        onChangeText={setFrameTextInput}
+        placeholderTextColor="#b6b6b6"
+        textStyle={styles.frameTextInputText}
+      />
+      <RNKTextInput
+        style={[styles.senha, styles.senhaSpaceBlock]}
+        placeholder="Senha:"
+        value={senhaTextInput}
+        onChangeText={setSenhaTextInput}
+        placeholderTextColor="#b6b6b6"
+        textStyle={styles.senhaTextInputText}
+      />
       <View style={[styles.iconUser, styles.vectorSpaceBlock]}>
         <Image
           style={styles.vectorIcon}
@@ -33,16 +47,12 @@ const TelaDeLogin = () => {
         />
       </View>
       <View style={[styles.line, styles.lineSpaceBlock]}>
-        <View
-          style={[styles.lineNomeCompleto, styles.lineNomeCompletoBorder]}
-        />
+        <View style={[styles.lineNomeCompleto, styles.telaDeLoginItemBorder]} />
       </View>
       <View style={[styles.line1, styles.lineSpaceBlock]}>
-        <View
-          style={[styles.lineNomeCompleto, styles.lineNomeCompletoBorder]}
-        />
+        <View style={[styles.lineNomeCompleto, styles.telaDeLoginItemBorder]} />
       </View>
-      <View style={[styles.telaDeLoginChild, styles.lineNomeCompletoBorder]} />
+      <View style={[styles.telaDeLoginItem, styles.telaDeLoginItemBorder]} />
       <Image
         style={styles.iconEyecinza}
         contentFit="cover"
@@ -65,6 +75,12 @@ const TelaDeLogin = () => {
 };
 
 const styles = StyleSheet.create({
+  frameTextInputText: {
+    color: "#b6b6b6",
+  },
+  senhaTextInputText: {
+    color: "#b6b6b6",
+  },
   telaLayout: {
     borderWidth: 1,
     backgroundColor: Color.branco,
@@ -78,9 +94,9 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   pagfiTypo: {
+    textAlign: "left",
     fontFamily: FontFamily.h2,
     fontWeight: "700",
-    textAlign: "left",
   },
   senhaSpaceBlock: {
     paddingVertical: Padding.p_5xs,
@@ -100,14 +116,13 @@ const styles = StyleSheet.create({
     left: 83,
     position: "absolute",
   },
-  lineNomeCompletoBorder: {
+  telaDeLoginItemBorder: {
     borderColor: "#b6b6b6",
     borderStyle: "solid",
   },
   entrar: {
     fontSize: FontSize.botton2_size,
     color: Color.branco,
-    textAlign: "left",
   },
   bottonEntrar: {
     top: 484,
@@ -117,13 +132,7 @@ const styles = StyleSheet.create({
     top: 538,
     left: 93,
   },
-  nomeOuTelefone: {
-    fontSize: FontSize.h7_size,
-    fontFamily: FontFamily.h7,
-    color: Color.cinzaPagFI,
-    textAlign: "left",
-  },
-  nomeOuTelefoneWrapper: {
+  telaDeLoginChild: {
     top: 354,
   },
   senha: {
@@ -158,7 +167,7 @@ const styles = StyleSheet.create({
   line1: {
     top: 446,
   },
-  telaDeLoginChild: {
+  telaDeLoginItem: {
     top: 749,
     left: 1,
     width: 359,
@@ -183,7 +192,6 @@ const styles = StyleSheet.create({
   },
   pagfi: {
     fontSize: FontSize.h2_size,
-    textAlign: "left",
   },
   pagfiWrapper: {
     top: 206,

@@ -10,9 +10,18 @@ import Devedores from "./screens/Devedores";
 import FrameScreen from "./screens/FrameScreen";
 import FrameScreen1 from "./screens/FrameScreen1";
 import Emprestar from "./screens/Emprestar";
+import MIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import { IconRegistry, ApplicationProvider } from "@ui-kitten/components";
+import * as eva from "@eva-design/eva";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text, Pressable, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 
 const App = () => {
   const [hideSplashScreen, setHideSplashScreen] = React.useState(true);
@@ -22,58 +31,87 @@ const App = () => {
     Ubuntu_bold: require("./assets/fonts/Ubuntu_bold.ttf"),
   });
 
+  function MaterialIcon({ name, style }) {
+    const { height, tintColor, ...iconStyle } = StyleSheet.flatten(style);
+    return (
+      <MIcon name={name} size={height} color={tintColor} style={iconStyle} />
+    );
+  }
+
+  const IconProvider = (name) => ({
+    toReactElement: (props) => MaterialIcon({ name, ...props }),
+  });
+
+  function createIconsMap() {
+    return new Proxy(
+      {},
+      {
+        get(target, name) {
+          return IconProvider(name);
+        },
+      }
+    );
+  }
+  const MaterialIconsPack = {
+    name: "material",
+    icons: createIconsMap(),
+  };
+
   if (!fontsLoaded && !error) {
     return null;
   }
 
   return (
     <>
-      <NavigationContainer>
-        {hideSplashScreen ? (
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen
-              name="TelaDeCadastro1"
-              component={TelaDeCadastro1}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="TelaDeLogin"
-              component={TelaDeLogin}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="TelaPrincipal"
-              component={TelaPrincipal}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="MeuPerfil"
-              component={MeuPerfil}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Devedores"
-              component={Devedores}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Frame44"
-              component={FrameScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Frame45"
-              component={FrameScreen1}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Emprestar"
-              component={Emprestar}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
-        ) : null}
-      </NavigationContainer>
+      <IconRegistry icons={[MaterialIconsPack]} />
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <NavigationContainer>
+          {hideSplashScreen ? (
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
+              <Stack.Screen
+                name="TelaDeCadastro1"
+                component={TelaDeCadastro1}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="TelaDeLogin"
+                component={TelaDeLogin}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="TelaPrincipal"
+                component={TelaPrincipal}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="MeuPerfil"
+                component={MeuPerfil}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Devedores"
+                component={Devedores}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Frame44"
+                component={FrameScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Frame45"
+                component={FrameScreen1}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Emprestar"
+                component={Emprestar}
+                options={{ headerShown: false }}
+              />
+            </Stack.Navigator>
+          ) : null}
+        </NavigationContainer>
+      </ApplicationProvider>
     </>
   );
 };

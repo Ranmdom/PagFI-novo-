@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { Color, Padding, FontFamily, Border, FontSize } from "../GlobalStyles";
 
@@ -189,12 +189,12 @@ const FrameScreen = () => {
         </View>
       </View>
       <View style={[styles.frameChild, styles.frameChildLayout]} />
-      <View style={[styles.bottonNo, styles.bottonSpaceBlock]}>
+      <Pressable style={[styles.bottonNo, styles.bottonSpaceBlock]}>
         <Text style={[styles.no, styles.noTypo]}>Não</Text>
-      </View>
-      <View style={[styles.bottonSim, styles.bottonSpaceBlock]}>
+      </Pressable>
+      <Pressable style={[styles.bottonSim, styles.bottonSpaceBlock]}>
         <Text style={[styles.no, styles.noTypo]}>Sim</Text>
-      </View>
+      </Pressable>
       <Text style={[styles.devedorRealizouO, styles.nomeTypo]}>
         Devedor realizou o pagamento?
       </Text>

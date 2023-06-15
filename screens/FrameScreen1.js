@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { Color, Border, FontSize, FontFamily, Padding } from "../GlobalStyles";
 
@@ -172,9 +172,9 @@ Cadastrado com sucesso!`}</Text>
           source={require("../assets/vector22.png")}
         />
       </View>
-      <View style={[styles.bottonConcluir, styles.bottonLayout]}>
+      <Pressable style={[styles.bottonConcluir, styles.bottonLayout]}>
         <Text style={[styles.concluir, styles.concluirTypo]}>Concluir</Text>
-      </View>
+      </Pressable>
     </View>
   );
 };
