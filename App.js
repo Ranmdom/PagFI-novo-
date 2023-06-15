@@ -4,12 +4,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import TelaDeCadastro1 from "./screens/TelaDeCadastro1";
 import TelaDeLogin from "./screens/TelaDeLogin";
-import TelaPrincipal from "./screens/TelaPrincipal";
 import MeuPerfil from "./screens/MeuPerfil";
-import Devedores from "./screens/Devedores";
 import FrameScreen from "./screens/FrameScreen";
 import FrameScreen1 from "./screens/FrameScreen1";
-import Emprestar from "./screens/Emprestar";
 import MIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { IconRegistry, ApplicationProvider } from "@ui-kitten/components";
 import * as eva from "@eva-design/eva";
@@ -67,7 +64,10 @@ const App = () => {
       <ApplicationProvider {...eva} theme={eva.light}>
         <NavigationContainer>
           {hideSplashScreen ? (
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Navigator
+              initialRouteName="TelaDeLogin"
+              screenOptions={{ headerShown: false }}
+            >
               <Stack.Screen
                 name="TelaDeCadastro1"
                 component={TelaDeCadastro1}
@@ -79,18 +79,8 @@ const App = () => {
                 options={{ headerShown: false }}
               />
               <Stack.Screen
-                name="TelaPrincipal"
-                component={TelaPrincipal}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
                 name="MeuPerfil"
                 component={MeuPerfil}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="Devedores"
-                component={Devedores}
                 options={{ headerShown: false }}
               />
               <Stack.Screen
@@ -101,11 +91,6 @@ const App = () => {
               <Stack.Screen
                 name="Frame45"
                 component={FrameScreen1}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="Emprestar"
-                component={Emprestar}
                 options={{ headerShown: false }}
               />
             </Stack.Navigator>
